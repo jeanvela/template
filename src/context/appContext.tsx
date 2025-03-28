@@ -66,11 +66,12 @@ export function AppProvider({ children }: { children: ReactNode }) {
   // }
 
   useEffect(() => {
-    if (appContext.currentUser) {
-      updateAuthContext({ appStatus: APP_STATUSES.loggedIn })
-      return
-    }
-    updateAuthContext({ appStatus: APP_STATUSES.loading })
+    // if (appContext.currentUser) {
+    //   updateAuthContext({ appStatus: APP_STATUSES.loggedIn })
+    //   return
+    // }
+    // updateAuthContext({ appStatus: APP_STATUSES.loading })
+    updateAuthContext({ appStatus: APP_STATUSES.loggedIn })
   }, [appContext]) // eslint-disable-line
 
   // useEffect(() => {
