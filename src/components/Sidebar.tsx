@@ -4,6 +4,7 @@ import { SECTION_NAME } from "../config/constans"
 import OPEN_ICON from "../assets/openIcon.png"
 import CLOSE_ICON from "../assets/closeIcon.png"
 import React from "react"
+import LOGO from '@/assets/estrella xd.png'
 
 export default function Sidebar({
   setCurrentSection,
@@ -24,7 +25,7 @@ export default function Sidebar({
       } transition-all duration-300 overflow-hidden h-[calc(100dvh-1.75rem)] flex flex-col max-[660px]:hidden`}>
       <div className="h-[48px] flex text-white gap-3 justify-start items-start mb-2">
         <figure>
-          <img src="" alt="" className="size-12"/>
+          <img src={LOGO} alt="Logo Le Paris" className="size-12"/>
         </figure>
         {
           isExpanded && (
@@ -50,7 +51,7 @@ export default function Sidebar({
               >
                 <figure>
                   {/* //! Aqui va el icono, en el hook tienes la constante */}
-                  <img src={sectionsIcons[key as keyof typeof sectionsIcons]} alt="" className="size-4"/>
+                  {sectionsIcons[key as keyof typeof sectionsIcons]}
                 </figure>
                 <span className="text-sm">{ isExpanded && value }</span>
                 {/* { // * Si quieres notificaciones creas el componente Badge

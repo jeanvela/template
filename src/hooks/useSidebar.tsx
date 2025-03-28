@@ -1,9 +1,10 @@
+import { IconQrcode } from "@tabler/icons-react"
 import { useState } from "react"
 
 const useSidebar = () => {
   const [isExpanded, setIsExpanded] = useState(false)
   const sectionsIcons = {
-    transactions: '',
+    qrs: <IconQrcode />
   }
 
   const toggleSidebar = () => {
