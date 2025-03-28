@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import {
   Card,
   CardContent,
@@ -16,6 +16,9 @@ import {
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { CalendarIcon, ClockIcon, RefreshCwIcon, UserIcon } from "lucide-react"
+import { getQrClient } from "@/services/leparis"
+import { useParams } from "react-router-dom"
+import { toast } from "sonner"
 
 // Ejemplo de datos de QR
 const qrData = {
@@ -30,8 +33,10 @@ const qrData = {
 }
 
 export default function Transactions() {
+  const { qrId } = useParams()
   // En una aplicación real, este estado vendría de una API o base de datos
   const [status, setStatus] = useState<"active" | "in-use" | "expired">("active")
+  const [qrData2, setQrData2] = useState({})
 
   // Función para cambiar el estado (solo para demostración)
   const cycleStatus = () => {
@@ -58,6 +63,21 @@ export default function Transactions() {
       minute: "2-digit",
     })
   }
+
+  const getQR = async () => {
+    const { ok, data } = await getQrClient(qrId)
+
+    if (!ok) {
+      toast.warning('No pudimos traer el qr')
+    }
+    console.log(data)
+    setQrData2(data.msg)
+  }
+
+  useEffect(() => {
+    getQR()
+  }, [])
+
   return (
     <>
    <Card className="w-full max-w-md mx-auto">
